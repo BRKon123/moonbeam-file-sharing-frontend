@@ -37,7 +37,9 @@ export default function Upload() {
 
     const result = await response.json();
     setMessage(result.message);
-    router.push('/dashboard');
+    if (result.success) {
+      router.push('/dashboard');
+    }
   };
 
   return (
