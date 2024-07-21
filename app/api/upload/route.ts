@@ -3,23 +3,17 @@ import crypto from 'crypto';
 import { Readable } from 'stream';
 import { ThirdwebStorage } from '@thirdweb-dev/storage';
 import { ethers } from 'ethers';
+import "@ethersproject/shims"
 
 // Thirdweb storage setup
 const storage = new ThirdwebStorage({ secretKey: process.env.THIRDWEB_SECRET_KEY! });
 
-// 2. Define network configurations
-const providerRPC = {
-  moonbeam: {
-    name: 'moonbeam-alpha',
-    rpc: process.env.ETHEREUM_PROVIDER_URL!, // Insert your RPC URL here
-    chainId: 1287, // 0x504 in hex,
-  },
-};
 // 3. Create ethers provider
-const provider = new ethers.providers.JsonRpcProvider(providerRPC.moonbeam.rpc, {
-  chainId: providerRPC.moonbeam.chainId,
-  name: providerRPC.moonbeam.name,
-});
+const provider = new ethers.providers.JsonRpcProvider({
+    url: process.env.ETHERUM_PROVIDER_URL!,
+    skipFetchSetup: true,
+  }
+);
 
 const wallet = new ethers.Wallet(process.env.PRIVATE_KEY!, provider);
 const contractAddress = process.env.CONTRACT_ADDRESS!;

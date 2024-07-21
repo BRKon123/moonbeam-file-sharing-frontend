@@ -30,13 +30,14 @@ export default function Upload() {
     formData.append('file', file);
     formData.append('address', address);
 
-    const response = await fetch('/api/upload', {
+    const response = await fetch('http://localhost:5000/upload', {
       method: 'POST',
       body: formData,
     });
 
     const result = await response.json();
     setMessage(result.message);
+    console.log("has the call finsihed yet?")
     if (result.success) {
       router.push('/dashboard');
     }

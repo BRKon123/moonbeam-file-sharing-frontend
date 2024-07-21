@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ethersproject/shims": "^5.7.0",
     "@pinata/sdk": "^2.1.0",
     "@thirdweb-dev/sdk": "^4.0.99",
     "crypto-js": "^4.2.0",
